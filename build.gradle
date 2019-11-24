@@ -30,10 +30,6 @@ test {
     useJUnitPlatform()
 }
 
-application {
-    mainClassName = 'io.turntabl.TCMS'
-}
-
 //this will build a start script in
 tasks.startScripts {
     doLast {
@@ -44,5 +40,5 @@ tasks.startScripts {
 
 //put your package-qualified main class name here
 application {
-    mainClassName = 'io.turntabl.TCMS'
+    mainClassName = 'io.turntabl.JavaDb'
 }
