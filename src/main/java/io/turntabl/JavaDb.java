@@ -11,8 +11,9 @@ public class JavaDb {
 
     public static void DisplayAllCustomers(){
         try(Connection database = DriverManager.getConnection(url, "doreen-dodoo",  "turntabl")) {
-            Statement query2 = database.createStatement();
-            ResultSet searchResults = query2.executeQuery("select * from customers");
+            PreparedStatement query = database.prepareStatement("select * from customers");
+            query.clearParameters();
+            ResultSet searchResults = query.executeQuery();
             System.out.println("--------------------------------------------------------------------------------------------------------------------");
             System.out.println();
             System.out.printf("%-10s %-30s %-30s %-15s %-30s", "Cus_id  ", "Company_name", "Contact_name ", "Country", "Telephone" + '\n');
@@ -33,7 +34,6 @@ public class JavaDb {
     public static void searchFunctionCustomers(){
 
         try(Connection database = DriverManager.getConnection(url, "doreen-dodoo",  "turntabl")) {
-            Statement query2 = database.createStatement();
             System.out.println("Please enter the customer name you want to search for: ");
             String searchName = scanner.nextLine();
             PreparedStatement query = database.prepareStatement("select * from customers where contact_name like ?");
